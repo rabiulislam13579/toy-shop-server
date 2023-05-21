@@ -16,7 +16,9 @@ app.use(cors())
 
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.kfqp20s.mongodb.net/?retryWrites=true&w=majority`;
+
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.wree0kk.mongodb.net/?retryWrites=true&w=majority`;
+
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -34,7 +36,7 @@ async function run() {
         app.get('/', (req, res) => {
             res.send("TOY Request Called")
         })
-
+       
         const toyCollection = client.db('toyManager').collection('toys')
         const bookingCollection = client.db('toyBooking').collection('bookings')
 
@@ -46,7 +48,7 @@ async function run() {
         })
 
 
-        
+
 
 
 
