@@ -62,6 +62,36 @@ async function run() {
             const result = await toyCollection.findOne(query);
             res.send(result)
         })
+
+         //=====find my toy======
+
+        //=====bookings=====
+
+        app.post('/bookings', async (req, res) => {
+            const data = req.body;
+
+            const result = await bookingCollection.insertOne(data)
+            res.send(result)
+        })
+
+        app.get('/bookings', async (req, res) => {
+            let query = {}
+            if (req.query?.email) {
+                query = { email: req.query.email }
+            }
+            const toys = bookingCollection.find(query)
+            const result = await toys.toArray()
+            res.send(result)
+        })
+
+        app.get('/bookings/:id', async (req, res) => {
+            const id = req.params.id
+            console.log(id);
+            const query = { _id: new ObjectId(id) }
+            const result = await bookingCollection.findOne(query);
+            res.send(result)
+        })
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
